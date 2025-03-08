@@ -1,0 +1,17 @@
+@if (loaded === false) {
+<div class="spinner-container">
+ <mat-spinner></mat-spinner>
+</div>
+
+} @else {
+<div class="articles-container">
+ @for (movie of movies; track $index) {
+  <mat-card class="article-card" appearance="outlined">
+    <mat-card-header>{{ movies[$index].title }}</mat-card-header>
+  </mat-card>
+ } 
+</div>
+
+
+
+}
