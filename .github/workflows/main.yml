@@ -28,24 +28,27 @@ jobs:
         run: npm run test -- --watch=false --browsers=ChromeHeadless
 
   # Job to run C# tests
-  # dotnet-tests:
-  #   runs-on: windows-latest
+  dotnet-tests:
+    runs-on: windows-latest
 
-  #   steps:
-  #     - name: Checkout repository
-  #       uses: actions/checkout@v2
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
 
-  #     - name: Set up .NET SDK
-  #       uses: actions/setup-dotnet@v3
-  #       with:
-  #         dotnet-version: '7.0' # Use the appropriate version of .NET for your project
+      - name: Set up .NET SDK
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: '8.0' # Use the appropriate version of .NET for your project
 
-  #     - name: Restore dependencies
-  #       run: dotnet restore
+      - name: Restore dependencies
+        working-directory: ./Backend
+        run: dotnet restore
 
-  #     - name: Build the project
-  #       run: dotnet build --configuration Release
+      - name: Build the project
+        working-directory: ./Backend
+        run: dotnet build --configuration Release
 
-  #     - name: Run C# tests
-  #       run: dotnet test --configuration Release --no-build --verbosity normal
+      - name: Run C# tests
+        working-directory: ./Backend
+        run: dotnet test --configuration Release --no-build --verbosity normal
 
