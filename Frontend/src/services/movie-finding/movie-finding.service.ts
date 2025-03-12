@@ -11,8 +11,8 @@ export class MovieFindingService {
   constructor(private http: HttpClient) { }
 
 
-  getPopularMovies(): Observable<MovieResponse> {
-    return this.http.get<MovieResponse>(`${this.baseUrl}/popular`).pipe(
+  getPopularMovies(page: number): Observable<MovieResponse> {
+    return this.http.get<MovieResponse>(`${this.baseUrl}/popular/?page=${page}`).pipe(
       tap(response => console.log('Raw response:', response)),
       map(response => new MovieResponse(response)) // Ensures proper typing
     );
