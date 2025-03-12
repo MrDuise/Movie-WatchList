@@ -27,7 +27,7 @@ describe('MovieFindingService', () => {
 
   it('should fetch popular movies', () => {
     const mockResponse = new MovieResponse();
-    service.getPopularMovies().subscribe(response => {
+    service.getPopularMovies(1).subscribe(response => {
       expect(response).toEqual(mockResponse);
     });
     const req = httpMock.expectOne(`${baseUrl}/popular`);
@@ -48,7 +48,7 @@ describe('MovieFindingService', () => {
   });
 
   it('should handle error when getPopularMovies fails', () => {
-    service.getPopularMovies().subscribe(
+    service.getPopularMovies(1).subscribe(
       () => fail('Expected an error, but got success'),
       error => {
         expect(error.status).toBe(500);
